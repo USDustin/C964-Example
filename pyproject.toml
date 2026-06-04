@@ -1,0 +1,28 @@
+[project]
+name = "c964-book"
+version = "0.0.0"
+description = "Build/publish environment for the C964 Computer Science Capstone Jupyter Book site."
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    # Classic Sphinx-based Jupyter Book (1.x). Do NOT allow 2.x (the MyST/mystmd rewrite,
+    # which will not build this _config.yml / _toc.yml-style book).
+    "jupyter-book>=1.0,<2",
+    "ghp-import>=2.1",
+    # Loaded via _config.yml -> sphinx.extra_extensions
+    "sphinx-sitemap>=2.5",
+    # Required to EXECUTE the ML example notebooks on build (_config.yml execute_notebooks: force).
+    # These mirror the known-good versions in requirements.txt.
+    "scikit-learn>=1.5",
+    "pandas>=2.0",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "matplotlib>=3.7",
+    "seaborn>=0.13",
+    "tabulate>=0.9",
+    "ipywidgets>=8.0",
+]
+
+# This project only manages the build environment; it is not itself an installable
+# package, so tell uv not to try to build/install it as one.
+[tool.uv]
+package = false
