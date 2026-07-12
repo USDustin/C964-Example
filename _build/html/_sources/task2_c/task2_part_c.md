@@ -468,7 +468,7 @@ For webpages or hosted Jupyter notebooks, submit the url link (provide the link 
 
 Always submit the data directly if it is less than 200 MB. For larger data sets not modifiable by the student (e.g., data from Kaggle.com, Data.gov, sklearn, etc.), it is acceptable to submit a link for the data source or import the data directly with your code. For large data sets modifiable by the student (say in a GitHub repo), then you should provide a subset of the data not exceeding the 200 MB limit. The project's documentation and performance assessment should be based on the full data.
 
-Never use Google Drive, as WGU policy forbids WGU employees from using it. Use of Google Colab is acceptable, but upload the source code as directed above.
+Use of Google Colab is acceptable, but upload the source code and check the share permisisons.
 
 <!-- %%also in doc FAQ -->
 (task2_part_c:faq:i_only_have_a_linux_or_mac_machine)=
