@@ -20,6 +20,16 @@ logo: ./url_images/3d_regression.png
 #https://jupyterbook.org/en/stable/structure/configure.html#disable-building-files-that-arent-in-the-table-of-contents
 only_build_toc_files: true
 
+# Keep the build from scanning/executing the uv virtual environment, local-history
+# snapshots, and notebook checkpoints/backups.
+exclude_patterns:
+  - .venv
+  - "**/.venv/**"
+  - .history
+  - "**/.history/**"
+  - "**/.ipynb_checkpoints/**"
+  - "**/*.bak.ipynb"
+
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
@@ -33,10 +43,68 @@ latex:
 bibtex_bibfiles:
     - references.bib
 
+parse:
+  myst_substitutions:
+    # Define each link/resource/video ONCE here, then reference {{ name }} in the .md.
+    # NOTE (Jim): the FORM/TEMPLATE links below are TODO placeholders. Replace them with the
+    # canonical CourseResources URLs. They MUST be absolute https URLs (NOT ./resources/...
+    # relative paths) or {{ }} can't resolve the same on pages at different folder depths.
+    ## Task 1 / templates (forms) -- TODO: fill canonical absolute URLs (docx + odt)
+    task1_temp: "[Topic Approval Form Template (docx)](https://westerngovernorsuniversity.sharepoint.com/:w:/s/CourseResources/IQDnMfHkGxAETYqaTlUe-IwrAfQORgEIUyWTOp1GfZ8eyBA?e=H9Pup9)"
+    task1_temp_odt: "[Topic Approval Form Template (odt)](https://westerngovernorsuniversity.sharepoint.com/:w:/s/CourseResources/IQB3YzuBLBR6Rb0g3WJkEv1vAUBnHZpyaljAjX5M1fmqOaA?e=PCIdMO)"
+    waiver_form: "[Restricted Information Authorization Form (docx)](https://westerngovernorsuniversity.sharepoint.com/:w:/s/CourseResources/IQDc4CpHsU48Sq1WrvEm07TKAbtkjTuTkAJ4RoQv24kJ5Ok?e=JcgeIj)"
+    waiver_form_odt: "[Restricted Information Authorization Form (odt)](https://westerngovernorsuniversity.sharepoint.com/:w:/s/CourseResources/IQBJMnWMpwTkSbiLXxt3KKwwAfzAUBX7W4TPV_FsZVgSWmg?e=pkctxi)"
+    task2_temp: "[Task 2 documentation template (docx)](https://westerngovernorsuniversity.sharepoint.com/:w:/s/CourseResources/IQCfVYl-M_dnR6qMVXmJOaDDAbmpzw-ueCKOKgobY-z6JWI?e=fJqR5Q)"
+    task2_temp_odt: "[Task 2 documentation template (odt)](https://westerngovernorsuniversity.sharepoint.com/:w:/s/CourseResources/IQAC4vYzPtASQ7Qd_9kkO5zPAU3kaom_5ssQfv5W8GARMLM?e=zljH44)"
+    ## Examples (PDF sets; defined for completeness -- currently left inline on the pages)
+    example_t1_1: "[Example 1](https://github.com/ashejim/C964/blob/main/resources/examples/C964_T1_Example1.pdf)"
+    example_t1_2: "[Example 2](https://github.com/ashejim/C964/blob/main/resources/examples/C964_T1_Example2.pdf)"
+    example_t1_3: "[Example 3](https://github.com/ashejim/C964/blob/main/resources/examples/C964_T1_Example3.pdf)"
+    example_t2_a: "[Example A](https://github.com/ashejim/C964/blob/main/resources/examples/C964_Task_2_example-from-evaluations-A.pdf)"
+    example_t2_b: "[Example B](https://github.com/ashejim/C964/blob/main/resources/examples/C964_Task_2_example-from-evaluations-B.pdf)"
+    example_t2_c: "[Example C](https://github.com/ashejim/C964/blob/main/resources/examples/C964_Task_2_example-from-evaluations-C.pdf)"
+    ## Videos (whole <iframe> stored here; reference {{ name }} on its own line in the .md)
+    overview_video: '<iframe src="https://wgu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=8bb97182-1e41-4b6f-9218-ad9201579ada&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" title="Getting Started on the Capstone" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>'
+    ml_overview_video: '<iframe src="https://wgu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=b3a9a4e9-c126-407d-a6b2-ae0100fde1ba&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" title="ML Supervised Classification and Regression Overview" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>'
+    ml_class_code_video: '<iframe src="https://wgu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=ae4e4987-3196-4b67-9752-ae010137b64c&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" title="ML Supervised Learning Classification Coding Example" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>'
+    student_presentation_video: '<iframe src="https://wgu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=aafbc992-f4ab-46dd-bf3c-aca1010efef6&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" title="Student Presentation" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>'
+    ## General (WGU)
+    excellence_archive: "[Capstone Excellence Archive](https://westerngovernorsuniversity.sharepoint.com/sites/capstonearchives/excellence/Pages/UndergraduateInformation.aspx)"
+    programming_center: "[WGU Programming Center](https://westerngovernorsuniversity.sharepoint.com/sites/ProgrammingCenter)"
+    math_center: "[WGU Math Center](https://my.wgu.edu/success-centers/math-center)"
+    student_resource_hub: "[Student Resource Hub](https://resource-hub.wgu.edu/)"
+    writing_center: "[Writing Center](https://my.wgu.edu/success-centers/writing-center)"
+    writing_center_kb: "[Writing Center Knowledge Base](https://cm.wgu.edu/t5/Writing-Center-Knowledge-Base/tkb-p/C770_kb)"
+    grammarly_edu: "[Grammarly for Education](https://cm.wgu.edu/t5/Academic-Coaching-Center/I-Need-Help-with-Professional-Communication/ta-p/23355)"
+    apa_help: "[I Need Help with APA Style](https://cm.wgu.edu/t5/Writing-Center-Knowledge-Base/I-Need-Help-with-APA-Style/ta-p/33524)"
+    wgu_library: "[WGU's library](https://wgu.libguides.com/friendly.php?s=library)"
+    irb_faq: "[WGU IRB and Human Subject Protections FAQ](https://cm.wgu.edu/t5/Frequently-Asked-Questions/WGU-IRB-and-Human-Subject-Protections-FAQ/ta-p/2002)"
+    ## AI policies (WGU)
+    ai_student_guide: "[Student Guide to Using AI at WGU](https://cm.wgu.edu/t5/Frequently-Asked-Questions/Student-Guide-to-Using-AI-at-Western-Governors-University/ta-p/67810)"
+    ai_use_policy: "[Use of Artificial Intelligence (AI) Tools](https://cm.wgu.edu/t5/WGU-Student-Policy-Handbook/Use-of-Artificial-Intelligence-AI-Tools/ta-p/67811)"
+    ## CI / Faculty (shared CourseResources doc -- same canonical link as D195; verify)
+    faculty_contact_info: "[Capstone Faculty Contact Information](https://westerngovernorsuniversity.sharepoint.com/:w:/s/CourseResources/IQA76nOCFdrDT5C2jA1VxuyEAfaNmbhXxJH72Qkr0ZF97DM?e=aDFBQI)"
+    schedule_appointment: "[Schedule an Appointment](https://westerngovernorsuniversity.sharepoint.com/:w:/s/CourseResources/IQA76nOCFdrDT5C2jA1VxuyEAfaNmbhXxJH72Qkr0ZF97DM?e=aDFBQI)"
+    ## Repo
+    github_repo: "[⭐ repo](https://github.com/ashejim/C964)"
+  # Setting myst_enable_extensions REPLACES Jupyter Book's default list, so include the full
+  # default set (keeps colon_fence / dollarmath / linkify / tasklist on alongside substitution).
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - linkify
+    - substitution
+    - tasklist
+
 sphinx:
   config:
     bibtex_reference_style: author_year
     html_baseurl: https://ashejim.github.io/C964
+    # Make notebook execution machine-independent: ignore whatever kernel name is baked
+    # into each .ipynb (VSCode stamps a unique per-machine kernel name) and always run
+    # with the env's standard "python3" kernel (provided by ipykernel in the uv env).
+    nb_kernel_rgx_aliases:
+      ".*": python3
   extra_extensions:
     - sphinx_sitemap
 
@@ -64,7 +132,7 @@ html:
   google_analytics_id: G-H4N36TZQ78 
   comments:
     utterances:
-      repo: "github-org/github-repo"
+      repo: "ashejim/C964"
 
 # Add a bibtex file so that we can create cited ..
 # In _config.yml
